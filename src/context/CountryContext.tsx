@@ -6,33 +6,28 @@ import React, {
   ReactNode,
 } from 'react';
 import { Country } from '../types/Country';
-import { getCountries } from '../services/countries';
+import { CountryData } from '../types/CountryData';
+import { getCountries, getTotalReports } from '../services/Countries';
 
-// Define the shape of the context
 interface CountryContextType {
   countries: Country[];
-  selectedCountry: string | null;
-  setSelectedCountry: (country: string) => void;
+  selectedCountry: Country | null;
+  setSelectedCountry: (country: Country) => void;
+  countryData: CountryData | null; 
 }
 
-// Create the context
 const CountryContext = createContext<CountryContextType | undefined>(undefined);
 
-// Provider component
-const CountryProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+const CountryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [countries, setCountries] = useState<Country[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [countryData, setCountryData] = useState<CountryData | null>(null);
 
+  // Fetch countries when the provider is mounted
   useEffect(() => {
-    // Fetch countries when the provider is mounted
     const fetchCountries = async () => {
       try {
         const data = await getCountries();
-        console.log(data);
         setCountries(data);
       } catch (error) {
         console.error('Failed to fetch countries:', error);
@@ -42,9 +37,26 @@ const CountryProvider: React.FC<{ children: ReactNode }> = ({
     fetchCountries();
   }, []);
 
+  // Fetch data for the selected country whenever it changes
+  useEffect(() => {
+    const fetchCountryData = async () => {
+      if (selectedCountry) {
+        try {
+          const data = await getTotalReports(selectedCountry.iso);
+          console.log('Fetched country data:', data);
+          setCountryData(data);
+        } catch (error) {
+          console.error('Failed to fetch country data:', error);
+        }
+      }
+    };
+
+    fetchCountryData();
+  }, [selectedCountry]);
+
   return (
     <CountryContext.Provider
-      value={{ countries, selectedCountry, setSelectedCountry }}
+      value={{ countries, selectedCountry, setSelectedCountry, countryData }}
     >
       {children}
     </CountryContext.Provider>
@@ -59,5 +71,5 @@ export const useCountryContext = (): CountryContextType => {
   }
   return context;
 };
-// Custom hook to use the CountryContext
+
 export { CountryContext, CountryProvider };
