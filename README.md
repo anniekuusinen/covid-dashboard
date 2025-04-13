@@ -2,7 +2,7 @@
 
 ## Overview
 
-This assignment involves building a COVID-19 Dashboard using public APIs. The goal is to create a responsive, user-friendly web application that allows users to view COVID-19 statistics for different countries. The project requires the use of React with functional components and Hooks, effective state management, and integration with public APIs for real-time data. The dashboard should feature a country selector, display relevant statistics, and optionally, show trends through a chart.
+This project involves building a COVID-19 Dashboard using public API. The dashboard is responsive, user-friendly web application that allows users to view COVID-19 statistics for different countries. 
 
 ## Features
 
@@ -16,33 +16,33 @@ This assignment involves building a COVID-19 Dashboard using public APIs. The go
 
 - Handle loading states, errors, and data caching.
 
-- Built with TypeScript for type safety.
+- Built with TypeScript.
 
 ## Components
 
-- Country Selector Component
+- Dropdown Component: a selector with label
+- DataCard Component: display individual statistics (e.g., confirmed cases, recovered cases, deaths) with appropriate styling.
+- Dark Mode Toggle:  Provides a switch to toggle between light and dark themes for the application.
 
-  - Displays a dropdown list of countries fetched from the API.
-
-  - Allows users to select a country to view its COVID-19 statistics.
-
-- Statistics Component
-
-  - Confirmed cases
-
-  - Recovered cases
-
-  - Deaths
+## Views
+- Country View that prompt user to select a country and shows a list of countries fetched from API.
+- Statistics Display that shows three different report cards for confirmed cases, recovered cases and deaths.
+- Error View displays error to users should there be something wrong.
 
 ## Technologies Used
 
-- Frontend: React, TypeScript, Context API
+### Frontend
+- React: For building the user interface.
+- TypeScript: Ensures type safety and better developer experience.
+- Context API: For state management across components.
 
-- Styling: Tailwind CSS for responsive UI
+### Styling
+- Tailwind CSS: Provides a utility-first approach for responsive and modern UI design.
 
-- API Integration: for fetching data
+### API Integration
+- Public API: Used for fetching real-time COVID-19 data.
 
-## How to run
+## How to run the application
 
 1. Clone the repository: `git clone https://github.com/anniekuusinen/covid-dashboard.git`
 2. Install dependencies:
@@ -50,18 +50,30 @@ This assignment involves building a COVID-19 Dashboard using public APIs. The go
 3. Start the development server:
    `npm run dev`
 
-## Additional Notes
+## Unit Tests
 
-- The project uses public APIs for fetching real-time COVID-19 data, from https://covid-api.com/api.
+- Unit tests are implemented using React Testing Library, Jest, and Vitest.
 
-- Tailwind CSS is used for styling the UI with responsive and modern designs.
+- These tests help maintain code quality and catch potential issues during development.
 
-- TypeScript ensures type safety for the components and API responses.
+### How to Run Unit Tests
+
+- To run the test suite and ensure the application components are functioning as expected, use the following command:
+
+```bash
+npm run test
+```
+
+- To run the UI test suite and verify the application's user interface functionality, use the following command:
+
+```bash
+npm run test:ui
+```
 
 ## Bonus Features
 
 - Dark Mode: Implement a toggle to switch between light and dark themes.
 
-- Unit Tests: Write tests for the components using React Testing Library and Jest.
+- Unit Tests: Write tests for the components using Vitest, React Testing Library and Jest.
 
 - Caching: Data fetched from the API is cached to avoid unnecessary re-fetching.
