@@ -1,23 +1,20 @@
 import React from 'react';
 import { useCountryContext } from '../context/CountryContext';
-import CountryView from './CountryView';
+import CountryView from './CountryDisplay';
 import StatisticsDisplay from './StatisticsDisplay';
 import DarkModeToggle from '../components/DarkModeToggle';
-import ErrorView from './ErrorView';
+import ErrorMessage from '../components/ErrorMessage';
+import Loading from '../components/Loading';
 
 const MainView: React.FC = () => {
   const { initialLoading, fatalError, countryDataError } = useCountryContext();
 
   if (initialLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl font-bold">Loading Covid Dashboard...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (fatalError) {
-    return <ErrorView error={fatalError} />;
+    return <ErrorMessage error={fatalError} />;
   }
 
   return (
@@ -29,7 +26,7 @@ const MainView: React.FC = () => {
       <CountryView />
 
       {countryDataError ? (
-        <ErrorView error={countryDataError} />
+        <ErrorMessage error={countryDataError} />
       ) : (
         <StatisticsDisplay />
       )}

@@ -8,15 +8,15 @@ vi.mock('./StatisticsDisplay', () => ({
   default: () => <div data-testid="statistics-display">Statistics Display</div>,
 }));
 
-vi.mock('./CountryView', () => ({
-  default: () => <div data-testid="country-view">Country View</div>,
+vi.mock('./CountryDisplay', () => ({
+  default: () => <div data-testid="country-display">Country Display</div>,
 }));
 
 vi.mock('../components/DarkModeToggle', () => ({
   default: () => <div data-testid="dark-mode-toggle">Dark Mode Toggle</div>,
 }));
 
-vi.mock('./ErrorView', () => ({
+vi.mock('../components/ErrorMessage', () => ({
   default: ({ error }: { error: string }) => (
     <div data-testid="error-view">{error}</div>
   ),
@@ -101,7 +101,7 @@ describe('MainView', () => {
     );
 
     expect(screen.getByTestId('dark-mode-toggle')).toBeInTheDocument();
-    expect(screen.getByTestId('country-view')).toBeInTheDocument();
+    expect(screen.getByTestId('country-display')).toBeInTheDocument();
     expect(screen.getByTestId('statistics-display')).toBeInTheDocument();
   });
 });
