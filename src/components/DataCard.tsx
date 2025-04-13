@@ -2,7 +2,7 @@ import React from 'react';
 
 interface DataCardProps {
   title: string;
-  number: number;
+  number: number | string;
   color: string;
 }
 const DataCard: React.FC<DataCardProps> = ({ title, number, color }) => {

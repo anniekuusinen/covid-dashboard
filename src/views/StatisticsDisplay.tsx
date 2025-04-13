@@ -1,21 +1,26 @@
 import React from 'react';
 import DataCard from '../components/DataCard';
 import { useCountryContext } from '../context/CountryContext';
+import { LOADING_TEXT, NA_TEXT, STATISTICS_COLORS } from '../utils/constants';
 
 const StatisticsDisplay: React.FC = () => {
-  const { countryData } = useCountryContext(); 
+  const { countryData, loading } = useCountryContext();
 
   const statistics = [
     {
       title: 'Confirmed Cases',
-      value: countryData?.confirmed || 0,
-      color: '#354a60',
+      value: loading ? LOADING_TEXT : countryData?.confirmed || NA_TEXT,
+      color: STATISTICS_COLORS.confirmed,
     },
-    { title: 'Deaths', value: countryData?.deaths || 0, color: '#e64b3e' },
     {
       title: 'Recovered',
-      value: countryData?.recovered || 0,
-      color: '#14a085',
+      value: loading ? LOADING_TEXT : countryData?.recovered || NA_TEXT,
+      color: STATISTICS_COLORS.recovered,
+    },
+    {
+      title: 'Deaths',
+      value: loading ? LOADING_TEXT : countryData?.deaths || NA_TEXT,
+      color: STATISTICS_COLORS.deaths,
     },
   ];
 

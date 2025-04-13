@@ -23,6 +23,7 @@ describe('Dropdown', () => {
 
   it('renders with label and options', () => {
     setup();
+    screen.debug();
     expect(screen.getByLabelText('Test Dropdown')).toBeInTheDocument();
     expect(screen.getByText('Option A')).toBeInTheDocument();
     expect(screen.getByText('Option B')).toBeInTheDocument();

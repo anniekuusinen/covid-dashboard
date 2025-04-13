@@ -28,7 +28,7 @@ const CountryView: React.FC = () => {
       />
       <div className="text-center mt-5">
         <p className="text-gray-700 dark:text-gray-200 sm:text-lg md:text-xl inline">
-          Selected Country:
+          Showing Covid Data For Country:
         </p>
         {selectedCountry && (
           <span className="text-gray-700 dark:text-gray-100 text-center sm:text-lg md:text-xl ml-2 font-bold">
