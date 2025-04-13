@@ -44,7 +44,7 @@ This assignment involves building a COVID-19 Dashboard using public APIs. The go
 
 ## How to run
 
-1. Clone the repository: `git clone https://github.com/anniekuusinen/task-management.git`
+1. Clone the repository: `git clone https://github.com/anniekuusinen/covid-dashboard.git`
 2. Install dependencies:
    `cd covid-dashboard && npm install`
 3. Start the development server:
@@ -52,7 +52,7 @@ This assignment involves building a COVID-19 Dashboard using public APIs. The go
 
 ## Additional Notes
 
-- The project uses public APIs for fetching real-time COVID-19 data. You can choose between COVID19API or Disease.sh for integration.
+- The project uses public APIs for fetching real-time COVID-19 data, from https://covid-api.com/api.
 
 - Tailwind CSS is used for styling the UI with responsive and modern designs.
 
